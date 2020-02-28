@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Weather sample App</string>
+
+    <string name="something_went_wrong">Something Went Wrong.</string>
+    <string name="give_another_try">Give it another try.</string>
+    <string name="reload">Reload</string>
+</resources>
