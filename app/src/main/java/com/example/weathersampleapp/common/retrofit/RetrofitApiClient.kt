@@ -1,7 +1,7 @@
-package com.example.weathersampleapp.common.Retrofit
+package com.example.weathersampleapp.common.retrofit
 
 import com.example.weathersampleapp.constant.Constants
-import com.example.weathersampleapp.service.ToDoListService
+import com.example.weathersampleapp.service.WeatherService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -29,7 +29,7 @@ object RetrofitApiClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun callTodoRetrofit(): ToDoListService = retrofit.create(ToDoListService::class.java)
+    fun callWeatherRetrofit(): WeatherService = retrofit.create(WeatherService::class.java)
 
 
 }

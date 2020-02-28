@@ -4,8 +4,9 @@ import com.example.weathersampleapp.data.models.WeatherResponseModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Query
 
-interface ToDoListService {
+interface WeatherService {
 
     @Headers(
         value = [
@@ -13,7 +14,11 @@ interface ToDoListService {
             "accept: application/json"
         ]
     )
-    @GET("/todos")
-    suspend fun getToDoList(): Response<List<WeatherResponseModel>>
+
+    @GET("weather")
+    suspend fun getWeatherDetail(
+        @Query("q") city: String,
+        @Query("APPID") appId: String
+    ): Response<WeatherResponseModel>
 
 }

@@ -9,3 +9,6 @@ fun Context.isNetWorkAvailable(): Boolean {
     val networkInfo = connectivityManager.activeNetworkInfo
     return networkInfo != null && networkInfo.isConnected
 }
+
+
+fun Double.round(decimals: Int = 2): Double = "%.${decimals}f".format(this).toDouble()

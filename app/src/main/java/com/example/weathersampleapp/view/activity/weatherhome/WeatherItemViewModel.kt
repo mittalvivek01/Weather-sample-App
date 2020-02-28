@@ -11,8 +11,8 @@ class WeatherItemViewModel(item: WeatherResponseModel) : BaseViewModel() {
     val toDoStatus = MutableLiveData<String>()
 
     init {
-        toDoTitle.value = item.title.capitalize()
-        toDoStatus.value = item.completed.toString().capitalize()
+       // toDoTitle.value = item.title.capitalize()
+      //  toDoStatus.value = item.completed.toString().capitalize()
     }
 
 }

@@ -3,31 +3,46 @@ package com.example.weathersampleapp.view.activity.weatherhome
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.weathersampleapp.base.BaseViewModel
-import com.example.weathersampleapp.common.Retrofit.RetrofitApiClient
 import com.example.weathersampleapp.common.response.ErrorResponse
+import com.example.weathersampleapp.common.retrofit.RetrofitApiClient
+import com.example.weathersampleapp.common.round
+import com.example.weathersampleapp.constant.Constants
 import com.example.weathersampleapp.data.models.WeatherResponseModel
-import com.example.weathersampleapp.data.repository.ToDoRepository
+import com.example.weathersampleapp.data.repository.WeatherRepository
 import kotlinx.coroutines.launch
 
 class WeatherHomeViewModel : BaseViewModel() {
 
-    val toDoList = MutableLiveData<List<WeatherResponseModel>>()
     val apiFailureEvent = MutableLiveData<ErrorResponse>()
     val isNetWorkAvailable = MutableLiveData<Boolean>()
 
     val apiRequestInProgress = MutableLiveData<Boolean>()
     val apiReloadEvent = MutableLiveData<Boolean>()
 
-    var repository= ToDoRepository(RetrofitApiClient.callTodoRetrofit())
+    var repository = WeatherRepository(RetrofitApiClient.callWeatherRetrofit())
 
-    fun getTodoList() {
+
+    var location = MutableLiveData<String>()
+    var temprature = MutableLiveData<String>()
+    var minMaxTemp = MutableLiveData<String>()
+    var weather = MutableLiveData<String>()
+    var wind = MutableLiveData<String>()
+
+   // val weatherList:MutableLiveData<List<>>()
+
+
+    fun getWeatherDetails() {
 
         viewModelScope.launch {
             apiRequestInProgress.value = true
-            val response = repository.getToDoList()
+            val response = repository.getWeatherDetails("Delhi,IN", Constants.APP_ID)
             if (response.isSuccessful) {
                 response.data.let {
-                    toDoList.value = it
+
+                    if (it != null) {
+                        setData(it)
+                    }
+
                 }
             } else {
                 apiFailureEvent.value = response.errorResponse
@@ -41,5 +56,18 @@ class WeatherHomeViewModel : BaseViewModel() {
     fun callApiReloadEvent() {
         apiReloadEvent.value = true
     }
+
+     fun setData(it: WeatherResponseModel) {
+        location.value = it.name
+        temprature.value = (it.main.temp - 273.13).round(2).toString() + " C"
+        minMaxTemp.value =
+            (it.main.temp_min - 273.13).round(2).toString() + " C" + "/" + (it.main.temp_max - 273.13).round(
+                2
+            ).toString() + " C"
+        weather.value = it.weather[0].description
+        wind.value = (it.wind.speed).toString() + " m/s"
+
+    }
+
 
 }

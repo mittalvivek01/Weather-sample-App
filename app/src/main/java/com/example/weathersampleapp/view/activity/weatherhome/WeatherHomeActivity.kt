@@ -22,12 +22,12 @@ class WeatherHomeActivity : BaseActivity<WeatherHomeViewModel, ActivityWeatherHo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.title.value = "TO-Do List"
+        viewModel.title.value = "Weather Update"
 
 
         // register data adapter
-        with(rvToDos) {
-            layoutManager = LinearLayoutManager(this@WeatherHomeActivity)
+        with(rvWeather) {
+            layoutManager = LinearLayoutManager(this@WeatherHomeActivity,LinearLayoutManager.HORIZONTAL,true)
             adapter = WeatherAdapter(this@WeatherHomeActivity)
         }
 
@@ -35,7 +35,6 @@ class WeatherHomeActivity : BaseActivity<WeatherHomeViewModel, ActivityWeatherHo
         callApiWithNetworkCheck()
 
         // add data observer
-        observeToDoListData()
         observeApiFailure()
 
         //Reload Api observer
@@ -49,7 +48,7 @@ class WeatherHomeActivity : BaseActivity<WeatherHomeViewModel, ActivityWeatherHo
         if (isNetWorkAvailable()) {
             viewModel.isNetWorkAvailable.value = true
 
-            viewModel.getTodoList()
+            viewModel.getWeatherDetails()
 
         } else {
             viewModel.isNetWorkAvailable.value = false
@@ -57,13 +56,13 @@ class WeatherHomeActivity : BaseActivity<WeatherHomeViewModel, ActivityWeatherHo
     }
 
 
-    private fun observeToDoListData() {
-        viewModel.toDoList.observe(this, Observer {
+   /* private fun observeWeatherListData() {
+        viewModel.weatherList.observe(this, Observer {
             if (it != null) {
-                (rvToDos.adapter as WeatherAdapter).addItemList(it)
+                (rvWeather.adapter as WeatherAdapter).addItemList(it)
             }
         })
-    }
+    }*/
 
     private fun observeApiFailure() {
         viewModel.apiFailureEvent.observe(this, Observer {

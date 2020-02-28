@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weathersampleapp.R
 import com.example.weathersampleapp.data.models.WeatherResponseModel
-import com.example.weathersampleapp.databinding.ItemTodoBinding
+import com.example.weathersampleapp.databinding.ItemWeatherBinding
 import com.example.weathersampleapp.view.activity.WeatherItemViewModel
 
 
@@ -17,9 +17,9 @@ class WeatherAdapter(private val parent: WeatherHomeActivity) :
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, index: Int): ViewHolder {
         val binding =
-            DataBindingUtil.inflate<ItemTodoBinding>(
+            DataBindingUtil.inflate<ItemWeatherBinding>(
                 LayoutInflater.from(viewGroup.context),
-                R.layout.item_todo, viewGroup, false
+                R.layout.item_weather, viewGroup, false
             )
         return ViewHolder(binding)
     }
@@ -38,7 +38,7 @@ class WeatherAdapter(private val parent: WeatherHomeActivity) :
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(val binding: ItemTodoBinding) :
+    inner class ViewHolder(val binding: ItemWeatherBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun setData(item: WeatherResponseModel) {
