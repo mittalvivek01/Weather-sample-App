@@ -60,6 +60,15 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTemprature"
             tools:text="23/33" />
 
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/haze"
+            app:layout_constraintTop_toBottomOf="@+id/tvMinMaxTemp"/>
+
         <TextView
             android:id="@+id/tvWeather"
             android:layout_width="wrap_content"
@@ -70,7 +79,7 @@
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMinMaxTemp"
+            app:layout_constraintTop_toBottomOf="@+id/image"
             tools:text="Haze" />
 
         <TextView
