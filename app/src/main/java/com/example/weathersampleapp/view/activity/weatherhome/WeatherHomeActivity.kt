@@ -35,6 +35,7 @@ class WeatherHomeActivity : BaseActivity<WeatherHomeViewModel, ActivityWeatherHo
         callApiWithNetworkCheck()
 
         // add data observer
+        observeWeatherListData()
         observeApiFailure()
 
         //Reload Api observer
@@ -42,7 +43,7 @@ class WeatherHomeActivity : BaseActivity<WeatherHomeViewModel, ActivityWeatherHo
     }
 
     /*
-      * Check Internet connection then call To-Do list api or show error.
+      * Check Internet connection then call weather data list api or show error.
       * */
     private fun callApiWithNetworkCheck() {
         if (isNetWorkAvailable()) {
@@ -50,19 +51,21 @@ class WeatherHomeActivity : BaseActivity<WeatherHomeViewModel, ActivityWeatherHo
 
             viewModel.getWeatherDetails()
 
+            viewModel.getWeeklyWeatherDetails()
+
         } else {
             viewModel.isNetWorkAvailable.value = false
         }
     }
 
 
-   /* private fun observeWeatherListData() {
-        viewModel.weatherList.observe(this, Observer {
+    private fun observeWeatherListData() {
+        viewModel.weeklyWeatherList.observe(this, Observer {
             if (it != null) {
                 (rvWeather.adapter as WeatherAdapter).addItemList(it)
             }
         })
-    }*/
+    }
 
     private fun observeApiFailure() {
         viewModel.apiFailureEvent.observe(this, Observer {

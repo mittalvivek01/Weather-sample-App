@@ -8,6 +8,7 @@ import com.example.weathersampleapp.common.retrofit.RetrofitApiClient
 import com.example.weathersampleapp.common.round
 import com.example.weathersampleapp.constant.Constants
 import com.example.weathersampleapp.data.models.WeatherResponseModel
+import com.example.weathersampleapp.data.models.X
 import com.example.weathersampleapp.data.repository.WeatherRepository
 import kotlinx.coroutines.launch
 
@@ -28,7 +29,7 @@ class WeatherHomeViewModel : BaseViewModel() {
     var weather = MutableLiveData<String>()
     var wind = MutableLiveData<String>()
 
-   // val weatherList:MutableLiveData<List<>>()
+    val weeklyWeatherList = MutableLiveData<List<X>>()
 
 
     fun getWeatherDetails() {
@@ -53,11 +54,33 @@ class WeatherHomeViewModel : BaseViewModel() {
         }
     }
 
+
+    fun getWeeklyWeatherDetails() {
+
+        viewModelScope.launch {
+            apiRequestInProgress.value = true
+            val response = repository.getWeeklyWeatherDetails("524901", Constants.APP_ID)
+            if (response.isSuccessful) {
+                response.data.let {
+
+                    if (it != null) {
+                        weeklyWeatherList.value = it.list
+                    }
+
+                }
+            }
+
+
+            apiRequestInProgress.value = false
+        }
+    }
+
+
     fun callApiReloadEvent() {
         apiReloadEvent.value = true
     }
 
-     fun setData(it: WeatherResponseModel) {
+    fun setData(it: WeatherResponseModel) {
         location.value = it.name
         temprature.value = (it.main.temp - 273.13).round(2).toString() + " C"
         minMaxTemp.value =

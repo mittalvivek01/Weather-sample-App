@@ -1,18 +1,25 @@
 package com.example.weathersampleapp.view.activity
 
 import androidx.lifecycle.MutableLiveData
-
 import com.example.weathersampleapp.base.BaseViewModel
-import com.example.weathersampleapp.data.models.WeatherResponseModel
+import com.example.weathersampleapp.common.round
+import com.example.weathersampleapp.data.models.X
 
-class WeatherItemViewModel(item: WeatherResponseModel) : BaseViewModel() {
+class WeatherItemViewModel(item: X) : BaseViewModel() {
 
-    val toDoTitle = MutableLiveData<String>()
-    val toDoStatus = MutableLiveData<String>()
+    val date = MutableLiveData<String>()
+    val maxTemp = MutableLiveData<String>()
+    val minTemp = MutableLiveData<String>()
+
 
     init {
-       // toDoTitle.value = item.title.capitalize()
-      //  toDoStatus.value = item.completed.toString().capitalize()
+        // toDoTitle.value = item.title.capitalize()
+
+
+        maxTemp.value = (item.temp.max - 273.13).round(2).toString() + " C"
+        minTemp.value = (item.temp.min - 273.13).round(2).toString() + " C"
+
+
     }
 
 }
