@@ -29,6 +29,8 @@ class WeatherHomeViewModel : BaseViewModel() {
     var weather = MutableLiveData<String>()
     var wind = MutableLiveData<String>()
 
+    var cityName = MutableLiveData<String>()
+
     val weeklyWeatherList = MutableLiveData<List<X>>()
 
 
@@ -64,6 +66,7 @@ class WeatherHomeViewModel : BaseViewModel() {
                 response.data.let {
 
                     if (it != null) {
+                        cityName.value = "Weekly Forecasting (" + it.city.name + ")"
                         weeklyWeatherList.value = it.list
                     }
 
