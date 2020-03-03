@@ -13,9 +13,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="@dimen/_100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_25dp"
+        android:layout_marginStart="@dimen/_10dp"
         android:layout_marginTop="@dimen/_6dp"
-        android:layout_marginEnd="@dimen/_25dp"
+        android:layout_marginEnd="@dimen/_10dp"
         android:layout_marginBottom="@dimen/_20dp"
         app:cardCornerRadius="@dimen/_5dp"
         app:cardElevation="@dimen/_4dp">
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10dp"
                 android:fontFamily="sans-serif"
-                android:text=""
+                android:text="@{viewModel.date}"
                 android:textColor="@color/color_text"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold"

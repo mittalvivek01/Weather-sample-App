@@ -27,7 +27,7 @@ class WeatherHomeActivity : BaseActivity<WeatherHomeViewModel, ActivityWeatherHo
 
         // register data adapter
         with(rvWeather) {
-            layoutManager = LinearLayoutManager(this@WeatherHomeActivity,LinearLayoutManager.HORIZONTAL,true)
+            layoutManager = LinearLayoutManager(this@WeatherHomeActivity,LinearLayoutManager.HORIZONTAL,false)
             adapter = WeatherAdapter(this@WeatherHomeActivity)
         }
 

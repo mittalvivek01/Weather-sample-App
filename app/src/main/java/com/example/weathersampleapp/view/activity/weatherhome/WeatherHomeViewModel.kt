@@ -59,7 +59,7 @@ class WeatherHomeViewModel : BaseViewModel() {
 
         viewModelScope.launch {
             apiRequestInProgress.value = true
-            val response = repository.getWeeklyWeatherDetails("524901", Constants.APP_ID)
+            val response = repository.getWeeklyWeatherDetails(Constants.BASE_URL_DAILY)
             if (response.isSuccessful) {
                 response.data.let {
 

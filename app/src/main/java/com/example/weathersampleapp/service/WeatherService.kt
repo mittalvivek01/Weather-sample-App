@@ -6,6 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface WeatherService {
 
@@ -22,8 +23,8 @@ interface WeatherService {
         @Query("APPID") appId: String
     ): Response<WeatherResponseModel>
 
-    @GET("forecast/daily")
-    suspend fun getWeeklyWeatherDetail(  @Query("id") city: String,
-                                         @Query("appid") appId: String): Response<WeeklyWeatherResponseModel>
+    @GET
+    suspend fun getWeeklyWeatherDetail(
+        @Url url : String): Response<WeeklyWeatherResponseModel>
 
 }

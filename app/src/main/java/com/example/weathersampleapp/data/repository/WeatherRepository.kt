@@ -13,8 +13,8 @@ class WeatherRepository(private val service: WeatherService) : BaseRepository() 
         return handleRequest { service.getWeatherDetail(city,appId) }
     }
 
-    suspend fun getWeeklyWeatherDetails(city:String,appId:String): ApiResponse<WeeklyWeatherResponseModel> {
-        return handleRequest { service.getWeeklyWeatherDetail(city,appId) }
+    suspend fun getWeeklyWeatherDetails(url:String): ApiResponse<WeeklyWeatherResponseModel> {
+        return handleRequest { service.getWeeklyWeatherDetail(url) }
     }
 
 }
