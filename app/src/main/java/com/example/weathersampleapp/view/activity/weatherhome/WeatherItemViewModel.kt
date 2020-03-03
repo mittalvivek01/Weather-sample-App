@@ -16,8 +16,8 @@ class WeatherItemViewModel(item: X) : BaseViewModel() {
     init {
         date.value = getDate(item.dt.toLong())
 
-        maxTemp.value = (item.temp.max - 273.13).round(2).toString() + " C"
-        minTemp.value = (item.temp.min - 273.13).round(2).toString() + " C"
+        maxTemp.value = (item.temp.max - 273.13).round(2).toString() + " \u2103"
+        minTemp.value = (item.temp.min - 273.13).round(2).toString() + " \u2103"
 
 
     }

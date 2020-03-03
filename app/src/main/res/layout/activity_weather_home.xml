@@ -15,7 +15,7 @@
         android:id="@+id/clTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#808629ff">
+        android:background="@drawable/bg_home">
 
         <include
             android:id="@+id/toolbar"
@@ -102,8 +102,8 @@
             android:layout_marginStart="@dimen/_16dp"
             android:layout_marginTop="@dimen/_10dp"
             android:text="Weekly Forecasting"
-            android:textColor="@color/colorAccent"
-            android:textSize="25sp"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvWind" />
@@ -112,6 +112,7 @@
             android:id="@+id/rvWeather"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvForecasting"
             tools:listitem="@layout/item_weather" />

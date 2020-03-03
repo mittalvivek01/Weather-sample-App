@@ -80,13 +80,13 @@ class WeatherHomeViewModel : BaseViewModel() {
         apiReloadEvent.value = true
     }
 
-    fun setData(it: WeatherResponseModel) {
+    private fun setData(it: WeatherResponseModel) {
         location.value = it.name
-        temprature.value = (it.main.temp - 273.13).round(2).toString() + " C"
+        temprature.value = (it.main.temp - 273.13).round(2).toString() + " \u2103"
         minMaxTemp.value =
-            (it.main.temp_min - 273.13).round(2).toString() + " C" + "/" + (it.main.temp_max - 273.13).round(
+            (it.main.temp_min - 273.13).round(2).toString() + " \u2103" + "/" + (it.main.temp_max - 273.13).round(
                 2
-            ).toString() + " C"
+            ).toString() + " \u2103"
         weather.value = it.weather[0].description
         wind.value = (it.wind.speed).toString() + " m/s"
 
